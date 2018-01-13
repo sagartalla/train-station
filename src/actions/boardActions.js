@@ -15,3 +15,11 @@ export function AddCarriageToLastTrain() {
 		type: 'ADD_CARRIAGE_TO_LAST_TRAIN'
 	}
 }
+
+export function modifyTrainCard(index, action) {
+	return {
+		type: 'MODIFY_TRAIN_CARD',
+		index,
+		action
+	}
+}

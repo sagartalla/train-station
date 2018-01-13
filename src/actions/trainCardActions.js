@@ -1,6 +1,6 @@
 export function updateArrivalTime(value) {
 	return {
-		type: 'UPDATE_ARRIVAL'
+		type: 'UPDATE_ARRIVAL',
 		payload: {
 			startTime: value
 		}
@@ -9,7 +9,7 @@ export function updateArrivalTime(value) {
 
 export function updateDepartureTime(value) {
 	return {
-		type: 'UPDATE_DEPARTURE'
+		type: 'UPDATE_DEPARTURE',
 		payload: {
 			endTime: value
 		}

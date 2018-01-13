@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
 import userReducer from 'reducers/userReducer'
-import boardReducer from 'reducers/boardReducer'
+import board from 'reducers/boardReducer'
+import trainReducer from 'reducers/trainReducer'
 export const makeRootReducer = () => {
   return combineReducers({
     user: userReducer,
-    board: boardReducer
+    board: board(trainReducer)
   })
 }
 

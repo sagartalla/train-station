@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from '../../stylus/board.styl'
 import Droppable from '../Droppable'
-import {AddNewTrain, AddCarriageToLastTrain} from  '../../actions/boardActions'
+import {AddNewTrain, AddCarriageToLastTrain, modifyTrainCard} from  '../../actions/boardActions'
 import TrainCard from '../TrainCard'
 import { connect } from 'react-redux'
 
@@ -36,13 +36,16 @@ class Board extends Component {
 
 	render() {
 		const {trains = [], error} = this.props.board
+		const dispatch = this.props.dispatch
 		return (
 			<div className={`${styles.board}`}>
 				<Droppable id="board" className={`${styles["drop-container"]}`} hoverClass={`${styles["hover-class"]}`} dropHandle={this.dropHandle} canDrop={this.canDrop}>
 					{
 						trains.map((train, index) =>{
 							console.log('render', train, index)
-							return <TrainCard key={index} trainInfo={train}/>
+							return <TrainCard key={index} trainInfo={train} dispatch={action =>
+										dispatch(modifyTrainCard(index, action))
+									}/>
 						})
 					}
 					{(()=>{

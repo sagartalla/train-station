@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {updateArrivalTime, updateDepartureTime} from '../../actions/trainCardActions.js'
 import styles from '../../stylus/train.styl'
 // import engineStyl from '../../stylus/engine.styl'
 // import carriageStyl from '../../stylus/carriage.styl'
@@ -12,11 +12,11 @@ export default class TrainCard extends Component {
 	}
 
 	arrivalTimeChange(value){
-
+		this.props.dispatch(updateArrivalTime(value))
 	}
 
 	departureTimeChange(value){
-
+		this.props.dispatch(updateDepartureTime(value))
 	}
 
 	render() {

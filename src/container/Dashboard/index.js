@@ -14,24 +14,31 @@ class Dashboard extends React.Component {
 	
 	constructor(props) {
 		super(props);
-		// this.state = {date: new Date()};
+		this.computeTracks = this.computeTracks.bind(this);
+	}
+
+	computeTracks() {
+		console.log(this.props.trains)
 	}
 
 	render(){   
-		return <div className={`${styles.dashboard}`}>
-			<div className={`${styles['left-pannel']}`}>
-				<Engine></Engine>
-				<Carriage></Carriage>
+		return <div>
+			<div className={`${styles.dashboard}`}>
+				<div className={`${styles['left-pannel']}`}>
+					<Engine></Engine>
+					<Carriage></Carriage>
+				</div>
+				<div className={`${styles["right-board"]}`}>
+					<Board></Board>
+				</div>
 			</div>
-			<div className={`${styles["right-board"]}`}>
-				<Board></Board>
-			</div>
+			<button onClick={this.computeTracks}>Compute Tracks</button>
 		</div>
 	}
 }
 
 const mapStateToProps = state => ({
-	
+	trains: state.board.trains
 })
 
 export default DragDropContext(HTML5Backend)(connect(mapStateToProps)(Dashboard))
