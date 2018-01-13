@@ -18,7 +18,37 @@ class Dashboard extends React.Component {
 	}
 
 	computeTracks() {
-		console.log(this.props.trains)
+		var flaten = []
+		this.props.trains.forEach(function(item){
+			if(item.startTime && item.endTime){
+				flaten.push({
+					time: item.startTime,
+					type: 's'
+				},{
+					time: item.endTime,
+					type: 'e'
+				})
+			}else{
+				alert('Please enter all times!!')
+				return
+			}
+		})
+		flaten.sort((a, b) => {
+			return new Date ('1/1/1999 ' + a.time) - new Date ('1/1/1999 ' + b.time)
+		})
+		var overlapItemCount = [], index = 0, counter = 0
+		flaten.forEach(function(item){
+			if(item.type == 's'){
+				counter++;
+				overlapItemCount[index] = counter;
+			}else{
+				counter--;
+			}
+			if(counter == 0){
+				index++;
+			}
+		})
+		alert('Minimum number of tracks required is ' + Math.max.apply(null ,overlapItemCount));
 	}
 
 	render(){   

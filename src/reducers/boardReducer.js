@@ -30,7 +30,7 @@ export default function board(reducer){
 						action: innerAction
 					} = action;
 				return {...state,
-					trains: [].concat([], reducer(state.trains.slice(0)[index], innerAction)),
+					trains:  [...state.trains.slice(0, index) ,reducer(state.trains.slice(0)[index], innerAction), ...state.trains.slice(index + 1)],
 					error: false
 				}
 			default:

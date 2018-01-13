@@ -20,7 +20,7 @@ export default class TrainCard extends Component {
 	}
 
 	render() {
-		const {engines, carriages} = this.props.trainInfo
+		const {engines, carriages, startTime, endTime} = this.props.trainInfo
 		return (
 			<div className={`${styles['card-container']}`}>
 				<div className={`${styles.engine}`}>E</div>
@@ -43,11 +43,11 @@ export default class TrainCard extends Component {
 				<div className={`${styles.rightside}`}>
 					<label className={`${styles.label}`}>
 						Arrival Time
-						<input name={"arrival"} type={'text'} type={"time"} onChange={e => this.arrivalTimeChange(e.target.value)}/> 
+						<input name={"arrival"} type={'text'} type={"time"} value={startTime} onChange={e => this.arrivalTimeChange(e.target.value)}/> 
 					</label>
 					<label className={`${styles.label}`}>
 						Depature Time
-						<input name={"departure"} type={'text'} type={"time"}  onChange={e => this.departureTimeChange(e.target.value)}/> 
+						<input name={"departure"} type={'text'} type={"time"} value={endTime} onChange={e => this.departureTimeChange(e.target.value)}/> 
 					</label>
 				</div>
 			</div>
