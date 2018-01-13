@@ -1,9 +1,10 @@
 import { applyMiddleware, compose, createStore as createReduxStore } from 'redux'
 import thunk from 'redux-thunk'
+import promise from 'redux-promise-middleware'
 import makeRootReducer from './reducers'
 
 const createStore = (initialState = {}) => {
-  const middleware = [thunk]
+  const middleware = [promise(), thunk]
   const enhancers = []
   let composeEnhancers = compose
   if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {

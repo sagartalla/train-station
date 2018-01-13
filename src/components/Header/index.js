@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 export default class Header extends Component {
   render() {
     return (
       <div>
-        <h1>Pokemon Directry</h1>
+        <h1>Make Train</h1>
       </div>
     )
   }

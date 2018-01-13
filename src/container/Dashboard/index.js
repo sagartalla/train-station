@@ -1,19 +1,39 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import styles from '../../sass/global.styl'
+import Engine from '../../components/Engine'
+import Carriage from '../../components/Carriage'
+import Board from '../../components/Board'
 
-const Dashboard = ({ user }) => (
-  <div className={`${styles.element}`}>
-    <h1>Dashboard</h1>
-    <p>test 123</p>
-  </div>
-)
+import styles from '../../stylus/dashboard.styl'
+
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
+
+class Dashboard extends React.Component {
+	
+	constructor(props) {
+		super(props);
+		// this.state = {date: new Date()};
+	}
+
+	render(){   
+		return <div className={`${styles.dashboard}`}>
+			<div className={`${styles['left-pannel']}`}>
+				<Engine></Engine>
+				<Carriage></Carriage>
+			</div>
+			<div className={`${styles["right-board"]}`}>
+				<Board></Board>
+			</div>
+		</div>
+	}
+}
 
 const mapStateToProps = state => ({
-  user: state.user
+	
 })
 
-export default connect(mapStateToProps)(Dashboard)
+export default DragDropContext(HTML5Backend)(connect(mapStateToProps)(Dashboard))
 
 export const DASHBOARD_PATH = '/'
