@@ -9,11 +9,11 @@ const Types = {
 
 const Target = {
 
-	// canDrop(props, monitor) {
-	// 	console.log('canDrop', props, monitor)
-	// 	// const item = monitor.getItem();
-	// 	return true
-	// },
+	canDrop(props, monitor) {
+		return props.canDrop({
+			item: monitor.getItem()
+		})
+	},
 
 	// hover(props, monitor, component) {
 	// 	console.log('hover', props, monitor, component)
@@ -39,9 +39,6 @@ function collect(connect, monitor) {
 }
 
 class Droppable extends Component {
-	componentWillReceiveProps(nextProps) {
-		console.log('componentWillReceiveProps', nextProps)
-	}
 	render() {
 		const {className, isOver, connectDropTarget, hoverClass} = this.props;
 		var obj = {}

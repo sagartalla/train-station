@@ -1,9 +1,17 @@
 export function AddNewTrain(){
 	return {
-		type: 'ADD_TRAIN'
+		type: 'ADD_TRAIN',
 		payload: {
-			startTime: null
+			engines: 1,
+			carriages: 0,
+			startTime: null,
 			endTime: null
 		}
+	}
+}
+
+export function AddCarriageToLastTrain() {
+	return {
+		type: 'ADD_CARRIAGE_TO_LAST_TRAIN'
 	}
 }
