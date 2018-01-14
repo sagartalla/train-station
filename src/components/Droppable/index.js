@@ -45,9 +45,9 @@ function collect(connect, monitor) {
 
 class Droppable extends Component {
 	render() {
-		const {className, isOver, connectDropTarget, hoverClass} = this.props;
+		const {className, isOverCurrent, connectDropTarget, hoverClass} = this.props;
 		var obj = {}
-		obj[hoverClass] = isOver
+		obj[hoverClass] = isOverCurrent
 		return connectDropTarget(
 			<div className={classNames(className, obj)}>
 				{this.props.children}
