@@ -16,16 +16,17 @@ export default class TrainCard extends Component {
 
 	canDrop({item}){
 		console.log('train candrop')
-		if(item.id == 'engine') {
-			// alert('There can only be one engine to a train !!')
-			return false
-		}
 		return true
 	}
 
 	dropHandle({item, props, monitor}){
 		console.log('train drop', monitor.didDrop(), monitor.getDropResult())
+		if(item.id == 'engine') {
+			alert('There can only be one engine to a train !!')
+			return false
+		}
 		this.props.dispatch(AddCarriage())
+
 	}
 
 	arrivalTimeChange(value){
