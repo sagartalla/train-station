@@ -19,6 +19,7 @@ class Dashboard extends React.Component {
 
 	computeTracks() {
 		var flaten = []
+		var quit = false
 		this.props.trains.forEach(function(item){
 			if(item.startTime && item.endTime){
 				flaten.push({
@@ -30,9 +31,12 @@ class Dashboard extends React.Component {
 				})
 			}else{
 				alert('Please enter all times!!')
-				return
+				quit = true
 			}
 		})
+		if(quit){
+			return
+		}
 		flaten.sort((a, b) => {
 			return new Date ('1/1/1999 ' + a.time) - new Date ('1/1/1999 ' + b.time)
 		})
