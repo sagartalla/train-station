@@ -18,11 +18,16 @@ class Board extends Component {
 	}
 
 	canDrop({item}){
+		console.log('board candrop')
 		return true
 	}
 
-	dropHandle({item}){
+	dropHandle({item, props, monitor}){
 		// console.log('dropHandle', item)
+		console.log('board drop', monitor.didDrop(), monitor.getDropResult())
+		if(monitor.didDrop()){
+			return
+		}
 		switch (item.id) {
 			case 'engine':
 				this.props.dispatch(AddNewTrain())
@@ -42,7 +47,6 @@ class Board extends Component {
 				<Droppable id="board" className={`${styles["drop-container"]}`} hoverClass={`${styles["hover-class"]}`} dropHandle={this.dropHandle} canDrop={this.canDrop}>
 					{
 						trains.map((train, index) =>{
-							console.log('render', train, index)
 							return <TrainCard key={index} trainInfo={train} dispatch={action =>
 										dispatch(modifyTrainCard(index, action))
 									}/>

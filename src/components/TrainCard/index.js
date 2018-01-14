@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import {updateArrivalTime, updateDepartureTime} from '../../actions/trainCardActions.js'
+import {updateArrivalTime, updateDepartureTime, AddCarriage} from '../../actions/trainCardActions.js'
 import styles from '../../stylus/train.styl'
+import Droppable from '../Droppable'
 // import engineStyl from '../../stylus/engine.styl'
 // import carriageStyl from '../../stylus/carriage.styl'
 
@@ -9,6 +10,22 @@ export default class TrainCard extends Component {
 		super(props)
 		this.arrivalTimeChange = this.arrivalTimeChange.bind(this)
 		this.departureTimeChange = this.departureTimeChange.bind(this)
+		this.canDrop = this.canDrop.bind(this)
+		this.dropHandle = this.dropHandle.bind(this)
+	}
+
+	canDrop({item}){
+		console.log('train candrop')
+		if(item.id == 'engine') {
+			// alert('There can only be one engine to a train !!')
+			return false
+		}
+		return true
+	}
+
+	dropHandle({item, props, monitor}){
+		console.log('train drop', monitor.didDrop(), monitor.getDropResult())
+		this.props.dispatch(AddCarriage())
 	}
 
 	arrivalTimeChange(value){
@@ -20,9 +37,12 @@ export default class TrainCard extends Component {
 	}
 
 	render() {
-		const {engines, carriages, startTime, endTime} = this.props.trainInfo
+		const {engines, carriages, startTime, endTime, timeError} = this.props.trainInfo
+		if(timeError){
+			alert(timeError);
+		}
 		return (
-			<div className={`${styles['card-container']}`}>
+			<Droppable canDrop={this.canDrop} dropHandle={this.dropHandle} className={`${styles['card-container']}`}>
 				<div className={`${styles.engine}`}>E</div>
 				{(()=>{
 					var dom = []
@@ -39,18 +59,17 @@ export default class TrainCard extends Component {
 					}
 					return dom
 				})()}
-
 				<div className={`${styles.rightside}`}>
 					<label className={`${styles.label}`}>
 						Arrival Time
-						<input name={"arrival"} type={'text'} type={"time"} value={startTime} onChange={e => this.arrivalTimeChange(e.target.value)}/> 
+						<input name={"arrival"} type={'text'} type={"time"} value={startTime || ''} onChange={e => this.arrivalTimeChange(e.target.value)}/> 
 					</label>
 					<label className={`${styles.label}`}>
 						Depature Time
-						<input name={"departure"} type={'text'} type={"time"} value={endTime} onChange={e => this.departureTimeChange(e.target.value)}/> 
+						<input name={"departure"} type={'text'} type={"time"} value={endTime || ''} onChange={e => this.departureTimeChange(e.target.value)}/> 
 					</label>
 				</div>
-			</div>
+			</Droppable>
 		)
 	}
 }

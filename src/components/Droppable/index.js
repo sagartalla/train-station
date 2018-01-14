@@ -23,8 +23,13 @@ const Target = {
 
 	drop(props, monitor) {
 		props.dropHandle({
-			item: monitor.getItem()
+			item: monitor.getItem(),
+			props,
+			monitor
 		})
+		return {
+			item: monitor.getItem()
+		}
 	}
 };
 

@@ -15,3 +15,9 @@ export function updateDepartureTime(value) {
 		}
 	}	
 }
+
+export function AddCarriage() {
+	return {
+		type: 'ADD_CARRIAGE'
+	}
+}
