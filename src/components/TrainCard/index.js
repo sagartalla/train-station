@@ -42,7 +42,7 @@ export default class TrainCard extends Component {
 			alert(timeError);
 		}
 		return (
-			<Droppable canDrop={this.canDrop} dropHandle={this.dropHandle} className={`${styles['card-container']}`}>
+			<Droppable canDrop={this.canDrop} dropHandle={this.dropHandle} className={`${styles['card-container']}`} hoverClass={`${styles["hover-class"]}`}>
 				<div className={`${styles.engine}`}>E</div>
 				{(()=>{
 					var dom = []
