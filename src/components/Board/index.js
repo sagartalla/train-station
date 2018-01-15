@@ -13,18 +13,11 @@ class Board extends Component {
 		this.canDrop = this.canDrop.bind(this)
 	}
 
-	componentWillReceiveProps(nextProps){
-		console.log('componentWillReceiveProps', nextProps)
-	}
-
 	canDrop({item}){
-		console.log('board candrop')
 		return true
 	}
 
 	dropHandle({item, props, monitor}){
-		// console.log('dropHandle', item)
-		console.log('board drop', monitor.didDrop(), monitor.getDropResult())
 		if(monitor.didDrop()){
 			return
 		}

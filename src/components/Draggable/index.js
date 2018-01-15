@@ -4,7 +4,6 @@ import { DragSource } from 'react-dnd'
 const DraggableSource = {
 	beginDrag(props) {
 		// Return the data describing the dragged item
-		console.log('beginDrag', props)
 		const item = { id: props.id };
 		return item;
 	},
